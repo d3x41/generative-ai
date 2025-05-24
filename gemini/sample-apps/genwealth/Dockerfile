@@ -1,7 +1,7 @@
 ##
 ## Stage 1: Build the API
 ##
-FROM node:lts-alpine AS api-build
+FROM node:22.15.1-alpine3.21 AS api-build
 
 WORKDIR /src
 COPY ./api .
@@ -12,7 +12,7 @@ RUN npx tsc --outDir /dist
 ##
 ## Stage 2: Build the UI
 ##
-FROM node:lts-alpine AS ui-build
+FROM node:22.15.1-alpine3.21 AS ui-build
 
 WORKDIR /app
 COPY ./ui .
@@ -23,7 +23,7 @@ RUN npx ng build --output-path /dist
 ##
 ## Stage 3: Build Runtime
 ##
-FROM node:lts-alpine AS runtime
+FROM node:22.15.1-alpine3.21 AS runtime
 
 WORKDIR /app
 
